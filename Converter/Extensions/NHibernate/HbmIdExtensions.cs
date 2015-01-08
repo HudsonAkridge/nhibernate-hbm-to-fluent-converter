@@ -1,4 +1,5 @@
 using NHibernate.Cfg.MappingSchema;
+using NHibernate.Util;
 
 namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
 {
@@ -57,12 +58,12 @@ namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
 
 		private static HbmColumn Column(this HbmId item)
 		{
-			if (item.column == null)
-			{
-				return null;
-			}
-
-			return item.column[0];
+		    return item.column == null ? null : item.column[0];
 		}
+
+	    public static string GetAccess(this HbmId item)
+        {
+            return item.access;
+        }
 	}
 }

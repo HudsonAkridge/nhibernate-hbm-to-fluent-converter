@@ -80,5 +80,10 @@ namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
         {
             return (HbmColumn)item.Columns.First();
         }
+
+        public static string GetAccess(this HbmManyToOne item)
+        {
+            return item.Access;
+        }
     }
 }

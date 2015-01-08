@@ -9,6 +9,7 @@ namespace NHibernateHbmToFluent.Converter.Types
 		private readonly GeneratedBy _generatedBy;
 		private readonly UnsavedValue _unsavedValue;
 		private readonly Column _column;
+        private readonly Access _access;
 
 		public Id(CodeFileBuilder builder)
 		{
@@ -16,13 +17,15 @@ namespace NHibernateHbmToFluent.Converter.Types
 			_column = new Column(_builder);
 			_generatedBy = new GeneratedBy(_builder);
 			_unsavedValue = new UnsavedValue(_builder);
-		}
+            _access = new Access(_builder);
+        }
 
 		public void Start(string prefix, MappedPropertyInfo item)
 		{
 			_builder.StartMethod(prefix, string.Format("{0}(x => x.{1})", FluentNHibernateNames.Id, item.Name));
 			_column.Add(item);
-			_generatedBy.Add(item);
+            _access.Add(item);
+            _generatedBy.Add(item);
 			_unsavedValue.Add(item);
 		}
 

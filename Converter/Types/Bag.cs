@@ -1,5 +1,6 @@
 using NHibernate.Cfg.MappingSchema;
 using NHibernateHbmToFluent.Converter.Extensions;
+using NHibernateHbmToFluent.Converter.Methods;
 using NHibernateHbmToFluent.Converter.Methods.Join;
 
 namespace NHibernateHbmToFluent.Converter.Types
@@ -13,16 +14,18 @@ namespace NHibernateHbmToFluent.Converter.Types
 		private readonly Table _table;
 		private readonly KeyColumn _keyColumn;
 		private readonly LazyLoad _lazyLoad;
+        private readonly Access _access;
 
 		public Bag(CodeFileBuilder builder)
 		{
 			_builder = builder;
-			_orderBy = new OrderBy(builder);
-			_cascade = new Cascade(builder);
-			_inverse = new Inverse(builder);
-			_table = new Table(builder);
-			_keyColumn = new KeyColumn(builder);
-			_lazyLoad = new LazyLoad(builder);
+            _orderBy = new OrderBy(_builder);
+            _cascade = new Cascade(_builder);
+            _inverse = new Inverse(_builder);
+            _table = new Table(_builder);
+            _keyColumn = new KeyColumn(_builder);
+            _lazyLoad = new LazyLoad(_builder);
+            _access = new Access(_builder);
 		}
 
 		public void Start(string prefix, MappedPropertyInfo item)
@@ -43,7 +46,8 @@ namespace NHibernateHbmToFluent.Converter.Types
 			}
 			_builder.AddLine(string.Format(".{0}()", FluentNHibernateNames.AsBag));
 			_keyColumn.Add(bag.inverse, item.ExplicitColumnName, subType);
-			_lazyLoad.Add(bag.lazySpecified, bag.lazy);
+            _access.Add(item);
+            _lazyLoad.Add(bag.lazySpecified, bag.lazy);
 			_table.Add(bag.table);
 			_inverse.Add(bag.inverse);
 			_cascade.Add(bag.cascade);

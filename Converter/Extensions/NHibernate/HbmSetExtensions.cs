@@ -18,6 +18,11 @@ namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
 			return item.name;
 		}
 
+        public static string GetAccess(this HbmSet item)
+        {
+            return item.Access;
+        }
+
 		public static string GetReturnType(this HbmSet item)
 		{
 			return new MappedPropertyInfo(item.Item, null).ReturnType;

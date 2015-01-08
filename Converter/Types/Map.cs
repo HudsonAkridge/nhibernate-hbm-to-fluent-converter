@@ -8,12 +8,14 @@ namespace NHibernateHbmToFluent.Converter.Types
         private readonly CodeFileBuilder _builder;
         private readonly Length _length;
         private readonly CustomType _customType;
+        private readonly Access _access;
 
         public Map(CodeFileBuilder builder)
         {
             _builder = builder;
             _length = new Length(_builder);
             _customType = new CustomType(_builder);
+            _access = new Access(_builder);
         }
 
         public void Start(string prefix, MappedPropertyInfo item)
@@ -22,6 +24,8 @@ namespace NHibernateHbmToFluent.Converter.Types
                 ? string.Format("{0}(x => x.{1}, \"{2}\")", FluentNHibernateNames.Map, item.Name, item.ExplicitColumnName)
                 : string.Format(@"{0}(x => x.{1})", FluentNHibernateNames.Map, item.Name);
             _builder.StartMethod(prefix, explicitColumnMapSyntax);
+
+            _access.Add(item);
             _customType.Add(item);
             _length.Add(item);
         }

@@ -93,6 +93,7 @@
     <Compile Include="MappingConverter.cs" />
     <Compile Include="FakeMap.cs" />
     <Compile Include="Methods\CustomType.cs" />
+    <Compile Include="Methods\Access.cs" />
     <Compile Include="Methods\Index.cs" />
     <Compile Include="Methods\UnsavedValue.cs" />
     <Compile Include="ReflectionUtility.cs" />

@@ -28,8 +28,11 @@ namespace NHibernateHbmToFluent.Converter
             Type = PropertyMappingType.GetByHbmTypeName(type);
 
             Name = Type.GetPropertyName(_hbmObject);
+
             ExplicitColumnName = Type.GetExplicitColumnName(_hbmObject);
             HasExplicitColumnName = !string.IsNullOrEmpty(ExplicitColumnName);
+
+            Access = Type.GetAccess(_hbmObject);
         }
 
         public T HbmObject<T>()
@@ -40,6 +43,7 @@ namespace NHibernateHbmToFluent.Converter
         public string Name { get; private set; }
         public string ExplicitColumnName { get; private set; }
         public bool HasExplicitColumnName { get; private set; }
+        public string Access { get; private set; }
 
         public int? MaxLength
         {

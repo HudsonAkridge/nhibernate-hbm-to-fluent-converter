@@ -13,6 +13,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                 "id",
                                                                                 x => ((HbmId)x).GetPropertyName(),
                                                                                 x => ((HbmId)x).GetColumnName(),
+                                                                                      x => ((HbmId)x).GetAccess(),
                                                                                 x => ((HbmId)x).GetMaxLength(),
                                                                                 x => ((HbmId)x).CanBeNull(),
                                                                                 x => ((HbmId)x).GetReturnType(),
@@ -25,6 +26,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                       "property",
                                                                                       x => ((HbmProperty)x).GetPropertyName(),
                                                                                       x => ((HbmProperty)x).GetExplicitColumnName(),
+                                                                                      x => ((HbmProperty)x).GetAccess(),
                                                                                       x => ((HbmProperty)x).GetMaxLength(),
                                                                                       x => ((HbmProperty)x).CanBeNull(),
                                                                                       x => ((HbmProperty)x).GetReturnType(),
@@ -35,9 +37,9 @@ namespace NHibernateHbmToFluent.Converter
 
         public static readonly PropertyMappingType ManyToOne = new PropertyMappingType(typeof(HbmManyToOne),
                                                                                        "many-to-one",
-                                                                                       x =>
-                                                                                       ((HbmManyToOne)x).GetPropertyName(),
+                                                                                       x => ((HbmManyToOne)x).GetPropertyName(),
                                                                                        x => ((HbmManyToOne)x).GetColumnName(),
+                                                                                       x => ((HbmManyToOne)x).GetAccess(),
                                                                                        x => ((HbmManyToOne)x).GetMaxLength(),
                                                                                        x => ((HbmManyToOne)x).CanBeNull(),
                                                                                        x => ((HbmManyToOne)x).GetReturnType(),
@@ -52,6 +54,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                         null,
                                                                                         x =>
                                                                                         ((HbmManyToMany)x).GetColumnName(),
+                                                                                        null,
                                                                                         x => null,
                                                                                         null,
                                                                                         x =>
@@ -63,6 +66,7 @@ namespace NHibernateHbmToFluent.Converter
 
         public static readonly PropertyMappingType OneToOne = new PropertyMappingType(typeof(HbmOneToOne),
                                                                                       "one-to-one",
+                                                                                      null,
                                                                                       null,
                                                                                       null,
                                                                                       x => null,
@@ -77,6 +81,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                        "one-to-many",
                                                                                        null,
                                                                                        null,
+                                                                                       null,
                                                                                        x => null,
                                                                                        null,
                                                                                        x => ((HbmOneToMany)x).GetReturnType(),
@@ -89,6 +94,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                  "set",
                                                                                  x => ((HbmSet)x).GetPropertyName(),
                                                                                  x => ((HbmSet)x).GetColumnName(),
+                                                                                 x => ((HbmSet)x).GetAccess(),
                                                                                  x => null,
                                                                                  x => ((HbmSet)x).CanBeNull(),
                                                                                  x => ((HbmSet)x).GetReturnType(),
@@ -101,6 +107,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                  "bag",
                                                                                  x => ((HbmBag)x).GetPropertyName(),
                                                                                  x => ((HbmBag)x).GetColumnName(),
+                                                                                      x => ((HbmBag)x).GetAccess(),
                                                                                  x => null,
                                                                                  x => ((HbmBag)x).CanBeNull(),
                                                                                  x => ((HbmBag)x).GetReturnType(),
@@ -114,6 +121,7 @@ namespace NHibernateHbmToFluent.Converter
                                                                                        x =>
                                                                                        ((HbmComponent)x).GetPropertyName(),
                                                                                        null,
+                                                                                       null,
                                                                                        x => null,
                                                                                        x => null,
                                                                                        x => ((HbmComponent)x).GetReturnType(),
@@ -125,6 +133,7 @@ namespace NHibernateHbmToFluent.Converter
         public Type HbmType { get; private set; }
         public string XmlTagName { get; private set; }
         public Func<object, string> GetPropertyName { get; private set; }
+        public Func<object, string> GetAccess { get; private set; }
         public Func<object, string> GetExplicitColumnName { get; private set; }
         public Func<object, int?> GetMaxLength { get; private set; }
         public Func<object, bool?> GetNullability { get; private set; }
@@ -135,7 +144,7 @@ namespace NHibernateHbmToFluent.Converter
         public Action<string, CodeFileBuilder, MappedPropertyInfo> StartMethod { get; set; }
 
         private PropertyMappingType(Type hbmType, string xmlTagName, Func<object, string> getPropertyName,
-                                    Func<object, string> getExplicitColumnName, Func<object, int?> getMaxLength,
+                                    Func<object, string> getExplicitColumnName, Func<object, string> getAccess, Func<object, int?> getMaxLength,
                                     Func<object, bool?> getNullability, Func<object, string> getReturnType,
                                     Func<object, bool?> getIsUnique, Func<object, string> getUniqueIndex,
                                     Func<object, string> getColumnType, Action<string, CodeFileBuilder, MappedPropertyInfo> startMethod)
@@ -144,6 +153,7 @@ namespace NHibernateHbmToFluent.Converter
             XmlTagName = xmlTagName;
             GetPropertyName = getPropertyName;
             GetExplicitColumnName = getExplicitColumnName;
+            GetAccess = getAccess;
             GetMaxLength = getMaxLength;
             GetNullability = getNullability;
             GetReturnType = getReturnType;

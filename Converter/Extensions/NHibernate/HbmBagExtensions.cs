@@ -33,5 +33,10 @@ namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
 		{
 			return item.inverse;
 		}
+
+        public static string GetAccess(this HbmBag item)
+        {
+            return item.Access;
+        }
 	}
 }

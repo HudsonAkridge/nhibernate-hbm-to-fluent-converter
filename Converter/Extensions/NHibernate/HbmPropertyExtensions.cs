@@ -31,6 +31,11 @@ namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
         {
             return item.name;
         }
+        
+        public static string GetAccess(this HbmProperty item)
+        {
+            return item.Access;
+        }
 
         public static string GetReturnType(this HbmProperty item)
         {
