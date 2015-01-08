@@ -1,0 +1,13 @@
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\NHibernateHbmToFluent.exe
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\NHibernateHbmToFluent.pdb
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\NHibernateHbmToFluent.Converter.dll
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\FluentNHibernate.dll
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\NHibernate.dll
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\JetBrains.Annotations.dll
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\bin\Debug\NHibernateHbmToFluent.Converter.pdb
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\obj\Debug\WinForm.csprojResolveAssemblyReference.cache
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\obj\Debug\NHibernateHbmToFluent.WinForm.MainForm.resources
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\obj\Debug\NHibernateHbmToFluent.WinForm.Properties.Resources.resources
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\obj\Debug\WinForm.csproj.GenerateResource.Cache
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\obj\Debug\NHibernateHbmToFluent.exe
+D:\work\nhibernate-hbm-to-fluent-converter\WinForm\obj\Debug\NHibernateHbmToFluent.pdb

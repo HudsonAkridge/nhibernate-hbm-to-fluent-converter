@@ -1,0 +1,8 @@
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\bin\Debug\NHibernateHbmToFluent.Converter.dll
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\bin\Debug\NHibernateHbmToFluent.Converter.pdb
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\bin\Debug\FluentNHibernate.dll
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\bin\Debug\JetBrains.Annotations.dll
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\bin\Debug\NHibernate.dll
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\obj\Debug\Converter.csprojResolveAssemblyReference.cache
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\obj\Debug\NHibernateHbmToFluent.Converter.dll
+D:\work\nhibernate-hbm-to-fluent-converter\Converter\obj\Debug\NHibernateHbmToFluent.Converter.pdb
