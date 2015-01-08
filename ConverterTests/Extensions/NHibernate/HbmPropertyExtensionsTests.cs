@@ -91,7 +91,7 @@ namespace ConverterTests.Extensions.NHibernate
 					{
 						column = expected
 					};
-				string result = property.GetColumnName();
+				string result = property.column;
 				result.ShouldBeEqualTo(expected);
 			}
 
@@ -109,7 +109,7 @@ namespace ConverterTests.Extensions.NHibernate
 									}
 							}
 					};
-				string result = property.GetColumnName();
+                string result = property.column;
 				result.ShouldBeEqualTo(expected);
 			}
 		}

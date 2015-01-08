@@ -19,7 +19,7 @@ namespace NHibernateHbmToFluent.Converter.Types
         public void Start(string prefix, MappedPropertyInfo item)
         {
             var explicitColumnMapSyntax = item.HasExplicitColumnName
-                ? string.Format(@"{0}(x => x.{1}, {2})", FluentNHibernateNames.Map, item.Name, item.ExplicitColumnName)
+                ? string.Format("{0}(x => x.{1}, \"{2}\")", FluentNHibernateNames.Map, item.Name, item.ExplicitColumnName)
                 : string.Format(@"{0}(x => x.{1})", FluentNHibernateNames.Map, item.Name);
             _builder.StartMethod(prefix, explicitColumnMapSyntax);
             _customType.Add(item);
