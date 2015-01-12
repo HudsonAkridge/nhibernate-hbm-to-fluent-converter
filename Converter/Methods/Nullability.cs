@@ -13,9 +13,9 @@ namespace NHibernateHbmToFluent.Converter.Methods
 
 		public void Add(MappedPropertyInfo info)
 		{
-			if (info.Type == PropertyMappingType.Id ||
-			    info.Type == PropertyMappingType.Set ||
-			    info.Type == PropertyMappingType.Bag)
+			if (info.PropertyMappingType == PropertyMappingType.Id ||
+			    info.PropertyMappingType == PropertyMappingType.Set ||
+			    info.PropertyMappingType == PropertyMappingType.Bag)
 			{
 				return;
 			}

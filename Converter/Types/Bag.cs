@@ -31,7 +31,7 @@ namespace NHibernateHbmToFluent.Converter.Types
 		public void Start(string prefix, MappedPropertyInfo item)
 		{
 			HbmBag bag = item.HbmObject<HbmBag>();
-			PropertyMappingType subType = new MappedPropertyInfo(bag.Item, item.FileName).Type;
+			PropertyMappingType subType = new MappedPropertyInfo(bag.Item, item.FileName).PropertyMappingType;
 			if (subType == PropertyMappingType.ManyToMany)
 			{
 				_builder.StartMethod(prefix, string.Format("{0}<{1}>(x => x.{2})", FluentNHibernateNames.HasManyToMany, item.ReturnType, item.Name));

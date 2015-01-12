@@ -34,7 +34,7 @@ namespace NHibernateHbmToFluent.Converter.Types
         {
             HbmSet set = item.HbmObject<HbmSet>();
             MappedPropertyInfo childItem = new MappedPropertyInfo(set.Item, item.FileName);
-            PropertyMappingType subType = childItem.Type;
+            PropertyMappingType subType = childItem.PropertyMappingType;
             if (subType == PropertyMappingType.ManyToMany)
             {
                 _builder.StartMethod(prefix, string.Format("{0}<{1}>(x => x.{2})", FluentNHibernateNames.HasManyToMany, item.ReturnType, item.Name));

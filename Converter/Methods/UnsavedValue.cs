@@ -14,7 +14,7 @@ namespace NHibernateHbmToFluent.Converter.Methods
 
 		public void Add(MappedPropertyInfo info)
 		{
-			if (info.Type != PropertyMappingType.Id)
+			if (info.PropertyMappingType != PropertyMappingType.Id)
 			{
 				return;
 			}

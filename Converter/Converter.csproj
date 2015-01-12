@@ -111,6 +111,7 @@
     <Compile Include="Methods\Join\KeyColumn.cs" />
     <Compile Include="Methods\Join\LazyLoad.cs" />
     <Compile Include="Methods\Length.cs" />
+    <Compile Include="Types\Unknown.cs" />
     <Compile Include="Types\Map.cs" />
     <Compile Include="Methods\Nullability.cs" />
     <Compile Include="Methods\Join\OrderBy.cs" />

@@ -24,15 +24,15 @@ namespace NHibernateHbmToFluent.Converter
             var extension = Path.GetExtension(nhibernateObject.GetType().FullName);
             if (extension == null) throw new InvalidOperationException("Cannot create mapped property info for invalid type.");
 
-            var type = extension.Substring(1);
-            Type = PropertyMappingType.GetByHbmTypeName(type);
+            var hbmTypeName = extension.Substring(1);
+            PropertyMappingType = PropertyMappingType.GetByHbmTypeName(hbmTypeName);
 
-            Name = Type.GetPropertyName(_hbmObject);
+            Name = (PropertyMappingType.GetPropertyName != null) ? PropertyMappingType.GetPropertyName(_hbmObject) : null;
 
-            ExplicitColumnName = Type.GetExplicitColumnName(_hbmObject);
+            ExplicitColumnName = (PropertyMappingType.GetExplicitColumnName != null) ? PropertyMappingType.GetExplicitColumnName(_hbmObject) : null;
             HasExplicitColumnName = !string.IsNullOrEmpty(ExplicitColumnName);
 
-            Access = Type.GetAccess(_hbmObject);
+            Access = (PropertyMappingType.GetAccess != null) ? PropertyMappingType.GetAccess(_hbmObject) : null;
         }
 
         public T HbmObject<T>()
@@ -50,7 +50,7 @@ namespace NHibernateHbmToFluent.Converter
             get
             {
                 if (_hasMaxLength) return _maxLength;
-                _maxLength = Type.GetMaxLength(_hbmObject);
+                _maxLength = PropertyMappingType.GetMaxLength(_hbmObject);
 
                 _hasMaxLength = true;
                 return _maxLength;
@@ -62,7 +62,7 @@ namespace NHibernateHbmToFluent.Converter
             get
             {
                 if (_hasNullability) return _canBeNull;
-                _canBeNull = Type.GetNullability(_hbmObject);
+                _canBeNull = PropertyMappingType.GetNullability(_hbmObject);
                 _hasNullability = true;
                 return _canBeNull;
             }
@@ -70,7 +70,7 @@ namespace NHibernateHbmToFluent.Converter
 
         public string ReturnType
         {
-            get { return _returnType ?? (_returnType = Type.GetReturnType(_hbmObject)); }
+            get { return _returnType ?? (_returnType = PropertyMappingType.GetReturnType(_hbmObject)); }
         }
 
         public bool? IsUnique
@@ -78,22 +78,22 @@ namespace NHibernateHbmToFluent.Converter
             get
             {
                 if (_hasIsUnique) return _isUnique;
-                _isUnique = Type.GetIsUnique(_hbmObject);
+                _isUnique = PropertyMappingType.GetIsUnique(_hbmObject);
                 _hasIsUnique = true;
                 return _isUnique;
             }
         }
 
-        public PropertyMappingType Type { get; private set; }
+        public PropertyMappingType PropertyMappingType { get; private set; }
 
         public string SqlType
         {
-            get { return _columnType ?? (_columnType = Type.GetColumnType(_hbmObject)); }
+            get { return _columnType ?? (_columnType = PropertyMappingType.GetColumnType(_hbmObject)); }
         }
 
         public string UniqueIndex
         {
-            get { return _uniqueIndex ?? (_uniqueIndex = Type.GetUniqueIndex(_hbmObject)); }
+            get { return _uniqueIndex ?? (_uniqueIndex = PropertyMappingType.GetUniqueIndex(_hbmObject)); }
         }
 
         public string FileName { get; private set; }

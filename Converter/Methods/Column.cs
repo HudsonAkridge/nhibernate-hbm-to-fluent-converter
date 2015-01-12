@@ -13,10 +13,10 @@ namespace NHibernateHbmToFluent.Converter.Methods
 
 		public void Add(MappedPropertyInfo item)
 		{
-			if (item.Type == PropertyMappingType.Component ||
-			    item.Type == PropertyMappingType.Property ||
-			    item.Type == PropertyMappingType.Set ||
-			    item.Type == PropertyMappingType.Bag)
+			if (item.PropertyMappingType == PropertyMappingType.Component ||
+			    item.PropertyMappingType == PropertyMappingType.Property ||
+			    item.PropertyMappingType == PropertyMappingType.Set ||
+			    item.PropertyMappingType == PropertyMappingType.Bag)
 			{
 				return;
 			}

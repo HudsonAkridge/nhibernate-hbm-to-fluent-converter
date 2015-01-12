@@ -20,7 +20,7 @@ namespace NHibernateHbmToFluent.Converter
 					new Unique(_builder),
 					new Index(_builder)
 				};
-			info.Type.StartMethod(prefix, _builder, info);
+			info.PropertyMappingType.StartMethod(prefix, _builder, info);
 			{
 				methodBuilders.ForEach(x => x.Add(info));
 			}

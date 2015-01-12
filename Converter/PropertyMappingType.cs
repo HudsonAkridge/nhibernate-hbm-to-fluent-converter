@@ -168,22 +168,30 @@ namespace NHibernateHbmToFluent.Converter
         [NotNull]
         public static PropertyMappingType GetByXmlTagName(string typeName)
         {
-            PropertyMappingType propertyMappingType = Get(typeName.ToLower());
-            if (propertyMappingType == null)
-            {
-                throw new Exception("Received request for unsupported type '" + typeName + "'");
-            }
-            return propertyMappingType;
+            var propertyMappingType = Get(typeName.ToLower());
+            return propertyMappingType ?? BuildUnknownType(typeName);
         }
 
         public static PropertyMappingType GetByHbmTypeName(string hbmTypeName)
         {
-            PropertyMappingType propertyMappingType = Get(hbmTypeName.ToLower());
-            if (propertyMappingType == null)
-            {
-                throw new Exception("Received request for unsupported type '" + hbmTypeName + "'");
-            }
-            return propertyMappingType;
+            var propertyMappingType = Get(hbmTypeName.ToLower());
+            return propertyMappingType ?? BuildUnknownType(hbmTypeName);
+        }
+
+        private static PropertyMappingType BuildUnknownType(string typeName)
+        {
+            return new PropertyMappingType(typeof (HbmComponent),
+                typeName,
+                x => ((HbmComponent) x).GetPropertyName(),
+                x => "?",
+                x => "?",
+                x => int.MinValue,
+                x => null,
+                x => "?",
+                x => null,
+                x => "?",
+                x => "?",
+                (prefix, builder, item) => new Unknown(builder).Start(typeName, item));
         }
     }
 }
