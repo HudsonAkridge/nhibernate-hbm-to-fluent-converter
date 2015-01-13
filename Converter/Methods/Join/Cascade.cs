@@ -20,7 +20,19 @@ namespace NHibernateHbmToFluent.Converter.Methods.Join
 						break;
 					case "none":
 						_builder.AddLine(string.Format(".{0}.{1}()", FluentNHibernateNames.Cascade, FluentNHibernateNames.None));
-						break;
+				        break;
+                    case "all":
+						_builder.AddLine(string.Format(".{0}.{1}()", FluentNHibernateNames.Cascade, FluentNHibernateNames.All));
+				        break;
+                    case "all-delete-orphan":
+						_builder.AddLine(string.Format(".{0}.{1}()", FluentNHibernateNames.Cascade, FluentNHibernateNames.AllDeleteOrphan));
+				        break;
+                    case "delete-orphan":
+						_builder.AddLine(string.Format(".{0}.{1}()", FluentNHibernateNames.Cascade, FluentNHibernateNames.DeleteOrphan));
+				        break;
+                    case "delete":
+						_builder.AddLine(string.Format(".{0}.{1}()", FluentNHibernateNames.Cascade, FluentNHibernateNames.Delete));
+				        break;
 					default:
 						_builder.AddLine(string.Format(".{0}.?", FluentNHibernateNames.Cascade));
 						break;
@@ -43,6 +55,26 @@ namespace NHibernateHbmToFluent.Converter.Methods.Join
 			public static string None
 			{
 				get { return ReflectionUtility.GetMethodName((FakeMap f) => f.HasMany<string>(x => x.ToLower()).Cascade.None()); }
+			}
+            
+            public static string All
+			{
+				get { return ReflectionUtility.GetMethodName((FakeMap f) => f.HasMany<string>(x => x.ToLower()).Cascade.All()); }
+			}
+            
+            public static string AllDeleteOrphan
+			{
+				get { return ReflectionUtility.GetMethodName((FakeMap f) => f.HasMany<string>(x => x.ToLower()).Cascade.AllDeleteOrphan()); }
+			}
+            
+            public static string DeleteOrphan
+			{
+				get { return ReflectionUtility.GetMethodName((FakeMap f) => f.HasMany<string>(x => x.ToLower()).Cascade.DeleteOrphan()); }
+			}
+            
+            public static string Delete
+			{
+				get { return ReflectionUtility.GetMethodName((FakeMap f) => f.HasMany<string>(x => x.ToLower()).Cascade.Delete()); }
 			}
 		}
 	}

@@ -1,3 +1,4 @@
+using System.Linq;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Util;
 
@@ -78,7 +79,8 @@ namespace NHibernateHbmToFluent.Converter.Extensions.NHibernate
 
         private static HbmColumn Column(this HbmManyToOne item)
         {
-            return (HbmColumn)item.Columns.First();
+            var column = item.Columns.FirstOrDefault();
+            return column ?? new HbmColumn { name = GetPropertyName(item) };
         }
 
         public static string GetAccess(this HbmManyToOne item)

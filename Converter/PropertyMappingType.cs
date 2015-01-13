@@ -180,9 +180,25 @@ namespace NHibernateHbmToFluent.Converter
 
         private static PropertyMappingType BuildUnknownType(string typeName)
         {
-            return new PropertyMappingType(typeof (HbmComponent),
+            return new PropertyMappingType(typeof(HbmComponent),
                 typeName,
-                x => ((HbmComponent) x).GetPropertyName(),
+                x =>
+                {
+                    var name = "UnknownProp";
+                    try
+                    {
+                        var methodInfo = x.GetType().GetMethod("GetPropertyName");
+                        if (methodInfo != null)
+                        {
+                            name = methodInfo.Invoke(x, null).ToString();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        //Intentionally suppress
+                    }
+                    return name;
+                },
                 x => "?",
                 x => "?",
                 x => int.MinValue,
@@ -192,6 +208,22 @@ namespace NHibernateHbmToFluent.Converter
                 x => "?",
                 x => "?",
                 (prefix, builder, item) => new Unknown(builder).Start(typeName, item));
+        }
+
+        private static PropertyMappingType BuildEmptyType(string typeName)
+        {
+            return new PropertyMappingType(typeof(HbmComponent),
+                typeName,
+                x => string.Empty,
+                x => string.Empty,
+                x => string.Empty,
+                x => int.MinValue,
+                x => null,
+                x => string.Empty,
+                x => null,
+                x => string.Empty,
+                x => string.Empty,
+                (prefix, builder, item) => new EmptyType(builder).Start(typeName, item));
         }
     }
 }
